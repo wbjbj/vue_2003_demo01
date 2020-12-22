@@ -1,4 +1,4 @@
-# 111
+# vue_shop_2003_demo
 
 ## Project setup
 ```
@@ -17,4 +17,3 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-# vue_2003_demo01
