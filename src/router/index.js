@@ -14,7 +14,43 @@ const routes = [{
     component: () => import('@/components/Layout'),
     children: [{
         path: '/',
-        component: () => import('@/views/Home/index')
+        meta: {
+            bread: ['首页']
+        },
+        component: () => import('@/views/Home')
+    }]
+}, {
+    path: '/users',
+    name: 'Users',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['用户管理', '用户列表']
+        },
+        component: () => import('@/views/Users')
+    }]
+}, {
+    path: '/roles',
+    name: 'Roles',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['权限管理', '角色列表']
+        },
+        component: () => import('@/views/Roles')
+    }]
+}, {
+    path: '/rights',
+    name: 'Rights',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['权限管理', '权限列表']
+        },
+        component: () => import('@/views/Rights')
     }]
 }, {
     path: '/login',

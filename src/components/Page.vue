@@ -1,0 +1,37 @@
+<template>
+  <el-pagination
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+    :current-page="pages.num"
+    :page-sizes="[2, 4, 6, 8]"
+    :page-size="pages.size"
+    layout="total, sizes, prev, pager, next, jumper"
+    :total="pages.total"
+  >
+  </el-pagination>
+</template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  props: ["pages"],
+  created() {},
+  mounted() {},
+  methods: {
+    handleSizeChange(val) {
+      this.pages.size = val;
+      this.$emit("changeSize", val);
+    },
+    handleCurrentChange(val) {
+      this.pages.num = val;
+      this.$emit("changeNum", val);
+    },
+  },
+  computed: {},
+};
+</script>
+
+<style lang='scss' scoped>
+</style>

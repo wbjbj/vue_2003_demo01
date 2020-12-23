@@ -1,44 +1,31 @@
 <template>
-  <el-aside width="200px">
+  <el-aside :width="NavCollApse ? '64px' : '200px'">
+    <div @click="NavCollApse = !NavCollApse" class="navConcoller">|||</div>
     <el-menu
-      default-active="2"
+      :unique-opened="true"
+      :collapse-transition="false"
+      :collapse="NavCollApse"
+      :default-active="$route.path"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
+      router
     >
-      <el-submenu index="1">
+      <el-submenu :index="item.path" v-for="item in menuList" :key="item.id">
         <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
+          <i :class="menuListIcon[item.id]"></i>
+          <span>{{ item.authName }}</span>
         </template>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
+        <el-menu-item
+          :index="'/' + row.path"
+          v-for="row in item.children"
+          :key="row.id"
+          >{{ row.authName }}</el-menu-item
+        >
       </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item>
     </el-menu>
   </el-aside>
 </template>
@@ -46,9 +33,21 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      menuList: [],
+      menuListIcon: {
+        125: "el-icon-user",
+        103: "el-icon-help",
+        101: "el-icon-shopping-bag-1",
+        102: "el-icon-document",
+        145: "el-icon-data-line",
+      },
+      NavCollApse: false,
+    };
   },
-  created() {},
+  created() {
+    this.getLeftNav();
+  },
   mounted() {},
   methods: {
     handleOpen(key, keyPath) {
@@ -57,16 +56,34 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+    async getLeftNav() {
+      const { data: res } = await this.$axios.get("menus");
+      if (res.meta.status === 200) {
+        this.menuList = res.data;
+      }
+    },
   },
   computed: {},
 };
 </script>
 
 <style lang='scss' scoped>
-.el-aside{
-    background-color: #545c64;
-    .el-menu{
-        border: none;
-    }
+.el-aside {
+  background-color: #545c64;
+  .navConcoller {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: #cccccc;
+    height: 15px;
+    font-size: 15px;
+    line-height: 15px;
+    margin: 5px 0;
+    padding: 5px 0;
+    background-color: #444c54;
+  }
+  .el-menu {
+    border: none;
+  }
 }
 </style>
