@@ -1,6 +1,7 @@
 <template>
   <div class="back">
     <el-table
+      stripe
       :data="rightList"
       :cell-style="{ 'text-align': 'center' }"
       :header-cell-style="{ 'text-align': 'center' }"
@@ -11,6 +12,7 @@
       <el-table-column label="权限等级">
         <template slot-scope="scope">
           <el-tag
+            size="mini"
             :type="
               scope.row.level == '0'
                 ? ''
@@ -20,10 +22,10 @@
             "
             >{{
               scope.row.level == "0"
-                ? "一级权限"
+                ? "一级"
                 : scope.row.level == "1"
-                ? "二级权限"
-                : "三级权限"
+                ? "二级"
+                : "三级"
             }}</el-tag
           >
         </template>
