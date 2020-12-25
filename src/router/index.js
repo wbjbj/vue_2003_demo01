@@ -42,6 +42,17 @@ const routes = [{
         component: () => import('@/views/Roles')
     }]
 }, {
+    path: '/goods',
+    name: 'Goods',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['商品管理', '商品列表']
+        },
+        component: () => import('@/views/Goods')
+    }]
+}, {
     path: '/rights',
     name: 'Rights',
     component: () => import('@/components/Layout'),

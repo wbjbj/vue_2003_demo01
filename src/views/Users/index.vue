@@ -101,6 +101,7 @@ export default {
         num: 1,
         size: 2,
         total: 0,
+        sizes: [1, 2, 5, 10],
       },
       editChange: false,
       IfAddUser: true,
