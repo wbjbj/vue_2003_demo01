@@ -13,7 +13,9 @@
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">添加商品</el-button>
+        <el-button type="primary" @click="$router.push('/goods/add')"
+          >添加商品</el-button
+        >
       </el-form-item>
     </el-form>
     <el-table :data="goodsList">

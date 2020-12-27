@@ -53,6 +53,28 @@ const routes = [{
         component: () => import('@/views/Goods')
     }]
 }, {
+    path: '/goods/add',
+    name: 'GoodsAdd',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['商品管理', '商品添加']
+        },
+        component: () => import('@/views/Goods/GoodsAdd')
+    }]
+}, {
+    path: '/params',
+    name: 'Params',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['商品管理', '分类参数']
+        },
+        component: () => import('@/views/Params')
+    }]
+}, {
     path: '/rights',
     name: 'Rights',
     component: () => import('@/components/Layout'),
