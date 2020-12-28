@@ -75,6 +75,17 @@ const routes = [{
         component: () => import('@/views/Params')
     }]
 }, {
+    path: '/categories',
+    name: 'Categories',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['商品管理', '商品分类']
+        },
+        component: () => import('@/views/Categories')
+    }]
+}, {
     path: '/rights',
     name: 'Rights',
     component: () => import('@/components/Layout'),
@@ -82,6 +93,17 @@ const routes = [{
         path: '/',
         meta: {
             bread: ['权限管理', '权限列表']
+        },
+        component: () => import('@/views/Rights')
+    }]
+}, {
+    path: '/reports',
+    name: 'Rights',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['数据统计', '数据报表']
         },
         component: () => import('@/views/Rights')
     }]

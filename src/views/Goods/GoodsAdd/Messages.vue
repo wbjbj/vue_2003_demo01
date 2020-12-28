@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="goodsMessage">
+  <el-form :model="goodsMessage" label-position="top" label-width="80px">
     <el-form-item label="商品名称">
       <el-input
         placeholder="请输入商品名称"
@@ -30,29 +30,48 @@
 export default {
   data() {
     return {
-      goodsMessage: {
-        goods_name: "",
-        goods_price: 0,
-        goods_number: 0,
-        goods_weight: 0,
-        goods_cat: [],
-      },
-      cats: [
-        {
-          value: "zhinan",
-          label: "指南",
-        },
-      ],
+      cats: [],
       propsDefault: {
         expandTrigger: "hover",
+        label: "cat_name",
+        value: "cat_id",
       },
     };
   },
-  created() {},
+  props: ["goodsMessage"],
+  created() {
+    this.getCatList();
+  },
   mounted() {},
   methods: {
+    async getCatList() {
+      const { data: res } = await this.$axios.get("categories");
+      if (res.meta.status == 200) {
+        this.cats = res.data;
+      } else {
+        this.$message.error(res.meta.msg);
+      }
+    },
     handleChange(value) {
-      console.log(value);
+      if (value.length != 3) {
+        this.$message.error("必须选择三级分类");
+        this.goodsMessage.goods_cat = [];
+      }
+      this.goodsMessage.attrs = [];
+      this.showDefaultVal();
+    },
+    async showDefaultVal() {
+      const { data: res } = await this.$axios.get(
+        `categories/${this.goodsMessage.goods_cat[2]}/attributes?sel=only`
+      );
+      if (res.meta.status == 200) {
+        res.data.map((item) => {
+          this.goodsMessage.attrs.push({
+            attr_id: item.attr_id,
+            attr_value: item.attr_vals,
+          });
+        });
+      }
     },
   },
   computed: {},
