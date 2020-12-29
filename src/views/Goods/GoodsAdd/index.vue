@@ -37,6 +37,7 @@ import GoodsOM from "./GoodsOM";
 import GoodsOMT from "./GoodsOMT";
 import GoodsImage from "./GoodsImage";
 import GoodsQuill from "./GoodsQuill";
+import _ from "lodash";
 export default {
   components: {
     Messages,
@@ -84,18 +85,16 @@ export default {
       if (res.meta.status == 200) this.attrList = res.data;
     },
     async addGood() {
-      this.GoodsAddList.goods_price = Number(this.GoodsAddList.goods_price);
-      this.GoodsAddList.goods_number = Number(this.GoodsAddList.goods_number);
-      this.GoodsAddList.goods_weight = Number(this.GoodsAddList.goods_weight);
-      console.log(this.GoodsAddList.goods_cat);
-      this.GoodsAddList.goods_cat = this.GoodsAddList.goods_cat.join(",");
-      const { data: res } = await this.$axios.post("goods", this.GoodsAddList);
+      let GoodsAddListClone = _.cloneDeep(this.GoodsAddList);
+      console.log(GoodsAddListClone.goods_cat);
+      GoodsAddListClone.goods_cat = GoodsAddListClone.goods_cat.join(",");
+      const { data: res } = await this.$axios.post("goods", GoodsAddListClone);
       if (res.meta.status == 201) {
         this.$message.success(res.meta.msg);
+        this.$router.push("/goods");
       } else {
         this.$message.error(res.meta.msg);
       }
-      this.$router.push("/goods");
     },
   },
   computed: {},

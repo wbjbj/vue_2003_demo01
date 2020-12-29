@@ -22,12 +22,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.back{
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 20px;
-    box-sizing: border-box;
-    // max-height: 80vh;
-    // overflow-y: inherit;
+.back {
+  background-color: rgba($color: #ffffff, $alpha: 0.7);
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 </style>

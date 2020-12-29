@@ -97,15 +97,26 @@ const routes = [{
         component: () => import('@/views/Rights')
     }]
 }, {
+    path: '/orders',
+    name: 'Orders',
+    component: () => import('@/components/Layout'),
+    children: [{
+        path: '/',
+        meta: {
+            bread: ['订单管理', '订单列表']
+        },
+        component: () => import('@/views/Orders')
+    }]
+}, {
     path: '/reports',
-    name: 'Rights',
+    name: 'Reports',
     component: () => import('@/components/Layout'),
     children: [{
         path: '/',
         meta: {
             bread: ['数据统计', '数据报表']
         },
-        component: () => import('@/views/Rights')
+        component: () => import('@/views/Reports')
     }]
 }, {
     path: '/login',

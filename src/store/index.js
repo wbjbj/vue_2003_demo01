@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        token: ''
+        token: '',
+        cnModel: false
     },
     mutations: {
         putToken(state, token) {
@@ -13,6 +14,9 @@ export default new Vuex.Store({
         },
         removeToken(state, token) {
             state.token = token
+        },
+        changecnModel(state) {
+            state.cnModel = !state.cnModel
         }
     },
     actions: {},

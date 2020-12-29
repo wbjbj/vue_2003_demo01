@@ -6,6 +6,9 @@
       fit="fill"
     ></el-image>
     <h2>后台管理系统</h2>
+    <el-button class="cnModel" type="danger" size="mini" @click="changeModel"
+      >LSP@Model</el-button
+    >
     <el-button type="warning" @click="logOut">退出</el-button>
   </el-header>
 </template>
@@ -35,6 +38,9 @@ export default {
             message: "已取消退出",
           });
         });
+    },
+    changeModel() {
+      this.$store.commit("changecnModel");
     },
   },
   computed: {},

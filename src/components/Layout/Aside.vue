@@ -69,18 +69,18 @@ export default {
 
 <style lang='scss' scoped>
 .el-aside {
-  background-color: #545c64;
+  background-color: rgba($color: #545c64, $alpha: 0.8);
   .navConcoller {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    color: #cccccc;
+    background-color: rgba($color: #cccccc, $alpha: 0.8);
     height: 15px;
     font-size: 15px;
     line-height: 15px;
     margin: 5px 0;
     padding: 5px 0;
-    background-color: #444c54;
+    background-color: rgba($color: #444c54, $alpha: 0.8);
   }
   .el-menu {
     border: none;

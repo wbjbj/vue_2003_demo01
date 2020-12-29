@@ -1,5 +1,17 @@
 <template>
-  <div class="loginBox">
+  <div
+    class="loginBox"
+    :style="
+      $store.state.cnModel
+        ? 'background: url(' +
+          require('../assets/loginBack.jpg') +
+          ');background-repeat: no-repeat;background-size: 100% 100%;'
+        : 'background-image: none;'
+    "
+  >
+    <el-button class="cnModel" type="danger" size="mini" @click="changeModel"
+      >LSP@Model</el-button
+    >
     <el-form :model="userList" class="demo-form-inline">
       <el-image
         style="width: 100px; height: 100px"
@@ -20,7 +32,9 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="login" style="width:100%">立即登录</el-button>
+        <el-button type="primary" @click="login" style="width: 100%"
+          >立即登录</el-button
+        >
       </el-form-item>
     </el-form>
   </div>
@@ -48,6 +62,9 @@ export default {
         this.$router.push("/home");
       }
     },
+    changeModel() {
+      this.$store.commit("changecnModel");
+    },
   },
   computed: {},
 };
@@ -58,6 +75,12 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
+  background-color: #c4c4c4;
+  .cnModel {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
   .el-form {
     width: 600px;
     height: 300px;
@@ -66,7 +89,11 @@ export default {
     left: 50%;
     margin-top: -150px;
     margin-left: -300px;
-    background-color: lightgray;
+    background-image: url("../assets/loginForm.gif");
+    background-position: bottom;
+    background-size: 80% 20%;
+    background-repeat: no-repeat;
+    background-color: #fff;
     padding: 70px 50px;
     box-sizing: border-box;
     border-radius: 30px;

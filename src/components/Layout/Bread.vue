@@ -22,7 +22,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.el-breadcrumb{
-    padding-bottom: 10px;
+.el-breadcrumb {
+  padding-bottom: 10px;
+  .el-breadcrumb__item {
+    user-select: none;
+  }
 }
 </style>
